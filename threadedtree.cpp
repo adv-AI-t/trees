@@ -26,5 +26,5 @@ class Node
 
 class Tree
 {
-    
-}
+
+};
