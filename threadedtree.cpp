@@ -26,5 +26,22 @@ class Node
 
 class Tree
 {
+    Node* root;
+    public:
+
+    Tree(int data)
+    {
+        Node* root = new Node(data);
+    }
+
+    void insertNode(int value)
+    {
+
+    }
     
 };
+
+int main()
+{
+    return 0;
+}
