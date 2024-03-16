@@ -38,7 +38,8 @@ class Tree
     {
         Node* ptr = root;
         Node* parent = NULL;
-        while(ptr)
+
+        while(!ptr)
         {
             parent = ptr;
             if(value<ptr->data)
@@ -57,6 +58,7 @@ class Tree
             }
         }
         Node* newnode = new Node(value);
+        newnode->lthread = newnode->rthread = true;
         if(!parent)
         {
             root = newnode;
@@ -69,7 +71,7 @@ class Tree
             parent->lthread = false;
             parent->left = newnode;
             newnode->right = parent;
-            newnode->rthread = true;
+            // newnode->rthread = true;
         }
         else
         {
@@ -78,24 +80,27 @@ class Tree
             parent->right = newnode;
             parent->rthread = false;
             newnode->left = parent;
-            newnode->lthread = true;
+            // newnode->lthread = true;
         }
     }
 
-    Node* leftmostNode(Node* root)
+    Node* leftmostNode(Node* node)
     {
-        Node* temp = root;
+        if(!node)
+        return node;
+        Node* temp = node;
         while(temp->left&&!temp->lthread)
         temp = temp->left;
+        cout<<temp->data;
         return temp;
     }
 
     Node* inorder()
     {
-        if(!root->right)
+        
+        if(!root)
         return NULL;
-        Node* temp = root;
-        temp = leftmostNode(temp);
+        Node* temp = leftmostNode(root);
         while(temp)
         {
             cout<<temp->data<<" ";
@@ -106,14 +111,12 @@ class Tree
         }
         return temp;
     }
-    
 };
 
 int main()
 {
     Tree t1(5);
-    t1.insert(3);
-    t1.insert(7);
+    t1.insert(2);
     t1.inorder();
     return 0;
 }
